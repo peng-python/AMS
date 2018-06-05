@@ -1,0 +1,217 @@
+{% extends 'base.html' %}
+
+{% block title %}资产管理系统—编辑申请信息{% endblock title %}
+
+
+{% block content %}
+<!-- Start #content -->
+        <div id="content">
+            <!-- Start .content-wrapper -->
+            <div class="content-wrapper">
+                <div class="row">
+                    <!-- Start .row -->
+                    <!-- Start .page-header -->
+                    <div class="col-lg-12 heading">
+                        <h1 class="page-header"><i class="im-checkbox-checked"></i> 资产申请详情表</h1>
+                        <!-- Start .bredcrumb -->
+                        <ul id="crumb" class="breadcrumb">
+                        </ul>
+                        <!-- End .breadcrumb -->
+                        <!-- Start .option-buttons -->
+
+                        <!-- End .option-buttons -->
+                    </div>
+                    <!-- End .page-header -->
+                </div>
+                <!-- End .row -->
+                <!-- Page start here ( usual with .row ) -->
+                <div class="outlet">
+                    <!-- Start .outlet -->
+                    <div class="row">
+                        <!-- Start .row -->
+                        <div class="col-lg-12">
+                            <!-- Start col-lg-12 -->
+                            <div class="panel panel-default toggle">
+                                <!-- Start .panel -->
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">申请人信息</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="form-horizontal group-border hover-stripped" role="form" id="validate">
+                                        <div class="form-group">
+                                            <label class="col-lg-2 control-label">申请人姓名</label>
+                                            <div class="col-lg-10">
+{#                                                <input type="text" class="form-control required">#}
+                                                <div class="form-control required">{{ apply.user.name }}{{ apply.user.id }}</div>
+                                            </div>
+                                        </div>
+
+                                        <!-- End .form-group  -->
+                                        <div class="form-group">
+                                            <label class="col-lg-2 control-label">申请人所属部门</label>
+                                            <div class="col-lg-10">
+{#                                                <input type="text" class="form-control" name="minval" placeholder="">#}
+                                                <div class="form-control required">{{ apply.user.department }}</div>
+                                            </div>
+                                        </div>
+                                        <!-- End .form-group  -->
+                                        <div class="form-group">
+                                            <label class="col-lg-2 control-label">申请人申请资产名称</label>
+                                            <div class="col-lg-10">
+{#                                                <input type="text" class="form-control" name="maxval" placeholder="">#}
+                                                <div class="form-control">{{ apply.asset_name }}</div>
+                                            </div>
+                                        </div>
+                                        <!-- End .form-group  -->
+
+                                        <div class="form-group">
+                                            <label class="col-lg-2 control-label">资产申请状态</label>
+                                            <div class="col-lg-10">
+{#                                                <input type="text" class="form-control" id="maxLenght" name="maxLenght" placeholder="">#}
+                                                <div class="form-control">{% if apply.apply_status == 1 %}审核中{% elif apply.apply_status == 2 %}通过{% elif apply.apply_status == 3 %}不同意
+                                                {% elif apply.apply_status == 4 %}正在配置{% elif apply.apply_status == 5 %}已完成，正在使用{% endif %}</div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel panel-default toggle">
+                                <!-- Start .panel -->
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">资产信息</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <form method="post" class="form-horizontal group-border hover-stripped" role="form" id="edit_apply" enctype="multipart/form-data">
+
+                                        <div class="form-group">
+                                            <label class="col-lg-2 control-label">资产唯一编号</label>
+                                            <div class="col-lg-10">
+                                                <select class="form-control select2" id="asset_sn" name="asset_sn">
+
+                                                        {% for asset in assets %}
+{#                                                            {% if user1.department_id == dept.id %}#}
+                                                        <option value="{{ asset.id }}">{{ asset.assets_sn }}</option>
+{#                                                            {% endif %}#}
+                                                        {% endfor %}
+
+
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-lg-2 control-label">资产申请状态</label>
+                                            <div class="col-lg-10">
+                                                <select class="form-control select2" id="apply_status" name="apply_status">
+                                                    {% if apply.apply_status == 1 %}
+                                                        <div class="form-control required">审核中</div>
+{#                                                        <option value="">审核中</option>#}
+                                                    {% else %}
+{#                                                        {% for apply_statu in apply %}#}
+{#                                                            <option value="2">通过</option>#}
+                                                            <option value="4">正在配置</option>
+                                                            <option value="5">已完成，正在使用</option>
+                                                    {% endif %}
+                                                </select>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <div class="col-lg-offset-2">
+                                                <button class="btn btn-default ml15" type="submit">提交</button>
+                                            </div>
+                                        </div>
+                                        <!-- End .form-group  -->
+                                    {% csrf_token %}
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- End .panel -->
+                        </div>
+                        <!-- End col-lg-12 -->
+                    </div>
+                    <!-- End .row -->
+                    <!-- Page End here -->
+                </div>
+                <!-- End .outlet -->
+            </div>
+            <!-- End .content-wrapper -->
+            <div class="clearfix"></div>
+        </div>
+        <!-- End #content -->
+{% endblock content %}
+        
+
+{% block endjs %}
+        <script src="/static/assets/plugins/core/moment/moment.min.js"></script>
+        <script src="/static/assets/plugins/charts/sparklines/jquery.sparkline.js"></script>
+        <script src="/static/assets/plugins/charts/pie-chart/jquery.easy-pie-chart.js"></script>
+        <script src="/static/assets/plugins/forms/icheck/jquery.icheck.js"></script>
+        <script src="/static/assets/plugins/forms/tags/jquery.tagsinput.min.js"></script>
+        <script src="/static/assets/plugins/forms/tinymce/tinymce.min.js"></script>
+        <script src="/static/assets/plugins/forms/switch/jquery.onoff.min.js"></script>
+        <script src="/static/assets/plugins/forms/maxlength/bootstrap-maxlength.js"></script>
+        <script src="/static/assets/plugins/forms/bootstrap-filestyle/bootstrap-filestyle.js"></script>
+        <script src="/static/assets/plugins/forms/color-picker/spectrum.js"></script>
+        <script src="/static/assets/plugins/forms/daterangepicker/daterangepicker.js"></script>
+        <script src="/static/assets/plugins/forms/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+        <script src="/static/assets/plugins/forms/globalize/globalize.js"></script>
+        <script src="/static/assets/plugins/forms/maskedinput/jquery.maskedinput.js"></script>
+        <script src="/static/assets/plugins/forms/select2/select2.js"></script>
+        <script src="/static/assets/plugins/forms/dual-list-box/jquery.bootstrap-duallistbox.js"></script>
+        <script src="/static/assets/plugins/forms/password/jquery-passy.js"></script>
+        <script src="/static/assets/plugins/forms/checkall/jquery.checkAll.js"></script>
+        <script src="/static/assets/plugins/forms/validation/jquery.validate.js"></script>
+        <script src="/static/assets/plugins/forms/validation/additional-methods.min.js"></script>
+        <script src="/static/assets/plugins/misc/highlight/highlight.pack.js"></script>
+        <script src="/static/assets/plugins/misc/countTo/jquery.countTo.js"></script>
+        <script src="/static/assets/js/jquery.sprFlat.js"></script>
+        <script src="/static/assets/js/app.js"></script>
+        <script src="/static/assets/js/pages/form-validation.js"></script>
+
+    <script type="text/javascript">
+    $(document).ready(function() {
+    $("#edit_apply").submit(function(){
+        {#alert('11111');#}
+        {#var form = new FormData(getElementById("validate"));#}
+
+		{#var dept_name = $("#dept_name").val();#}
+        {##}
+         {#       if (dept_name == "") {#}
+         {#           alert('内容不能为空');#}
+         {#           return#}
+         {#       }#}
+                $.ajax({
+                        cache: false,
+                        type: "POST",
+                        url: '{% url 'operation:edit_apply' apply.id %}',
+                        data: $('#edit_apply').serialize(),
+                        async: true,
+                        beforeSend: function (xhr, settings) {
+                            xhr.setRequestHeader("X-CSRFToken","{{ csrf_token }}");
+                            {#alert('3333');#}
+                        },
+                        success: function (data) {
+                            {#alert('2222');#}
+                            if (data.status == 'fail') {
+                                if (data.msg == '资产唯一编号不允许为空') {
+                                    alert('保存失败');
+                                    window.location.href = "{% url 'operation:apply_edit' apply.id %}";
+                                }
+                                else {
+                                    alert(data.msg)
+                                }
+                            }
+                            else if (data.status == 'success') {
+                                alert('资产信息保存成功');
+                                window.location.reload();
+                            }
+                        }
+                    })
+		})
+    })
+    </script>
+{% endblock endjs %}

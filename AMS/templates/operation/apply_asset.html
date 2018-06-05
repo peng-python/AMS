@@ -1,0 +1,174 @@
+{% extends 'base.html' %}
+
+{% block title %}资产管理系统—资产申请管理{% endblock title %}
+
+{% block content %}
+        <!-- Start #content -->
+        <div id="content">
+            <!-- Start .content-wrapper -->
+            <div class="content-wrapper">
+                <div class="row">
+                    <!-- Start .row -->
+                    <!-- Start .page-header -->
+                    <div class="col-lg-12 heading">
+                        <h1 class="page-header"><i class="im-checkbox-checked"></i> 资产申请</h1>
+                        <!-- Start .bredcrumb -->
+                        <ul id="crumb" class="breadcrumb">
+                        </ul>
+                        <!-- End .breadcrumb -->
+                        <!-- Start .option-buttons -->
+
+                        <!-- End .option-buttons -->
+                    </div>
+                    <!-- End .page-header -->
+                </div>
+                <!-- End .row -->
+                <!-- Page start here ( usual with .row ) -->
+                <div class="outlet">
+                    <!-- Start .outlet -->
+                    <div class="row">
+                        <!-- Start .row -->
+                        <div class="col-lg-12">
+                            <!-- Start col-lg-12 -->
+                            <div class="panel panel-default toggle">
+                                <!-- Start .panel -->
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">资产申请</h3>
+                                </div>
+                                <div class="panel-body">
+                                     <form method="post" class="form-horizontal group-border hover-stripped" role="form" id="apply_assets" enctype="multipart/form-data">
+
+
+                                        <div class="form-group">
+                                            <label class="col-lg-2 control-label">申请人姓名</label>
+                                            <div class="col-lg-10">
+                                                <select class="form-control select2" id="apply_name" name="apply_name">
+                                                    <option value="">请选择人员</option>
+                                                    {% for dept in depts %}
+                                                    <optgroup label="{{ dept.name }}">
+                                                        {% for user1 in users %}
+                                                            {% if user1.department_id == dept.id %}
+                                                        <option value="{{ user1.id }}">{{ user1.name }}</option>
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    {% endfor %}
+{#                                                        <option value="HI">Hawaii</option>#}
+{#                                                    </optgroup>#}
+
+                                                </select>
+                                            </div>
+                                        </div>
+
+
+                                        <!-- End .form-group  -->
+                                        <div class="form-group">
+                                            <label class="col-lg-2 control-label">申请资产名称</label>
+                                            <div class="col-lg-10">
+                                                <input type="text" class="form-control" name="asset_name" placeholder="">
+                                            </div>
+                                        </div>
+{#                                        <!-- End .form-group  -->#}
+
+                                        <div class="form-group">
+                                            <label class="col-lg-2 col-md-2 col-sm-12 control-label">备注</label>
+                                            <div class="col-lg-10 col-md-10">
+                                                <textarea class="form-control" rows="3" name="remark"></textarea>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <div class="col-lg-offset-2">
+                                                <button class="btn btn-default ml15" type="submit">提交</button>
+                                            </div>
+                                        </div>
+                                        <!-- End .form-group  -->
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- End .panel -->
+                        </div>
+                        <!-- End col-lg-12 -->
+                    </div>
+                    <!-- End .row -->
+                    <!-- Page End here -->
+                </div>
+                <!-- End .outlet -->
+            </div>
+            <!-- End .content-wrapper -->
+            <div class="clearfix"></div>
+        </div>
+        <!-- End #content -->
+{% endblock content %}
+
+
+{% block endjs %}        
+        <script src="/static/assets/plugins/core/moment/moment.min.js"></script>
+        <script src="/static/assets/plugins/charts/sparklines/jquery.sparkline.js"></script>
+        <script src="/static/assets/plugins/charts/pie-chart/jquery.easy-pie-chart.js"></script>
+        <script src="/static/assets/plugins/forms/icheck/jquery.icheck.js"></script>
+        <script src="/static/assets/plugins/forms/tags/jquery.tagsinput.min.js"></script>
+        <script src="/static/assets/plugins/forms/tinymce/tinymce.min.js"></script>
+        <script src="/static/assets/plugins/forms/switch/jquery.onoff.min.js"></script>
+        <script src="/static/assets/plugins/forms/maxlength/bootstrap-maxlength.js"></script>
+        <script src="/static/assets/plugins/forms/bootstrap-filestyle/bootstrap-filestyle.js"></script>
+        <script src="/static/assets/plugins/forms/color-picker/spectrum.js"></script>
+        <script src="/static/assets/plugins/forms/daterangepicker/daterangepicker.js"></script>
+        <script src="/static/assets/plugins/forms/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+        <script src="/static/assets/plugins/forms/globalize/globalize.js"></script>
+        <script src="/static/assets/plugins/forms/maskedinput/jquery.maskedinput.js"></script>
+        <script src="/static/assets/plugins/forms/select2/select2.js"></script>
+        <script src="/static/assets/plugins/forms/dual-list-box/jquery.bootstrap-duallistbox.js"></script>
+        <script src="/static/assets/plugins/forms/password/jquery-passy.js"></script>
+        <script src="/static/assets/plugins/forms/checkall/jquery.checkAll.js"></script>
+        <script src="/static/assets/plugins/forms/validation/jquery.validate.js"></script>
+        <script src="/static/assets/plugins/forms/validation/additional-methods.min.js"></script>
+        <script src="/static/assets/plugins/misc/highlight/highlight.pack.js"></script>
+        <script src="/static/assets/plugins/misc/countTo/jquery.countTo.js"></script>
+        <script src="/static/assets/js/jquery.sprFlat.js"></script>
+        <script src="/static/assets/js/app.js"></script>
+        <script src="/static/assets/js/pages/form-validation.js"></script>
+
+     <script type="text/javascript">
+    $(document).ready(function() {
+    $("#apply_assets").submit(function(){
+        {#alert('11111');#}
+        {#var form = new FormData(getElementById("validate"));#}
+
+		{#var dept_name = $("#dept_name").val();#}
+        {##}
+         {#       if (dept_name == "") {#}
+         {#           alert('内容不能为空');#}
+         {#           return#}
+         {#       }#}
+                $.ajax({
+                        cache: false,
+                        type: "POST",
+                        url: '{% url 'operation:apply_asset' %}',
+                        data: $('#apply_assets').serialize(),
+                        async: true,
+                        beforeSend: function (xhr, settings) {
+                            xhr.setRequestHeader("X-CSRFToken","{{ csrf_token }}");
+                            {#alert('3333');#}
+                        },
+                        success: function (data) {
+                            {#alert('2222');#}
+                            if (data.status == 'fail') {
+                                if (data.msg == '不允许为空') {
+                                    alert('不允许为空');
+                                    window.location.href = "{% url 'operation:asset_apply' %}";
+                                }
+                                else {
+                                    alert(data.msg)
+                                }
+                            }
+                            else if (data.status == 'success') {
+                                alert('申请成功，请等待领导批准');
+                                window.location.reload();
+                            }
+                        }
+                    })
+		})
+    })
+    </script>
+{% endblock endjs %}

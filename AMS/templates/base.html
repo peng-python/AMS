@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+
+        <title>{% block title %}Dashboard{% endblock title %}</title>
+        <!-- Mobile specific metas -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <!-- Force IE9 to render in normal mode -->
+        <!--[if IE]><meta http-equiv="x-ua-compatible" content="IE=9" /><![endif]-->
+        <meta name="author" content="SuggeElson" />
+        <meta name="description" content=""
+        />
+        <meta name="keywords" content=""
+        />
+        <meta name="application-name" content="sprFlat admin template" />
+        <!-- Import google fonts - Heading first/ text second -->
+        <link rel='stylesheet' type='text/css'
+        <!--[if lt IE 9]>
+
+<![endif]-->
+        <!-- Css files -->
+        <!-- Icons -->
+        <link href="/static/assets/css/icons.css" rel="stylesheet" />
+        <!-- jQueryUI -->
+        <link href="/static/assets/css/sprflat-theme/jquery.ui.all.css" rel="stylesheet" />
+        <!-- Bootstrap stylesheets (included template modifications) -->
+        <link href="/static/assets/css/bootstrap.css" rel="stylesheet" />
+        <!-- Plugins stylesheets (all plugin custom css) -->
+        <link href="/static/assets/css/plugins.css" rel="stylesheet" />
+        <!-- Main stylesheets (template main css file) -->
+        <link href="/static/assets/css/main.css" rel="stylesheet" />
+        <!-- Custom stylesheets ( Put your own changes here ) -->
+        <link href="/static/assets/css/custom.css" rel="stylesheet" />
+        <!-- Fav and touch icons -->
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/assets/img/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/assets/img/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/assets/img/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="/static/assets/img/ico/apple-touch-icon-57-precomposed.png">
+        <link rel="icon" href="/static/assets/img/ico/favicon.ico" type="image/png">
+        <!-- Windows8 touch icon ( http://www.buildmypinnedsite.com/ )-->
+        <meta name="msapplication-TileColor" content="#3399cc" />
+    </head>
+
+
+    <body>
+        <!-- Start #header -->
+        <div id="header">
+            <div class="container-fluid">
+                <div class="navbar">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="index.html">
+                            <i class="im-windows8 text-logo-element animated bounceIn"></i><span class="text-logo">spr</span><span class="text-slogan">flat</span>
+                        </a>
+                    </div>
+                    <nav class="top-nav" role="navigation">
+                        <ul class="nav navbar-nav pull-left">
+                            <li id="toggle-sidebar-li">
+                                <a href="#" id="toggle-sidebar"><i class="en-arrow-left2"></i>
+                        </a>
+                            </li>
+                            <li>
+                                <a href="#" class="full-screen"><i class="fa-fullscreen"></i></a>
+                            </li>
+
+                        </ul>
+                        <ul class="nav navbar-nav pull-right">
+
+                            <li class="dropdown">
+                                <a href="#" data-toggle="dropdown">
+                                    <img class="user-avatar" src="/static/assets/img/avatars/48.jpg" alt="SuggeElson">欢迎您，资产管理员:{{ request.user.name }}</a>
+                                <ul class="dropdown-menu right" role="menu">
+
+                                    <li><a href="{% url 'users:logout' %}"><i class="im-exit"></i> 退出</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </nav>
+                </div>
+                <!-- Start #header-area -->
+
+            </div>
+            <!-- Start .header-inner -->
+        </div>
+        <!-- End #header -->
+        <!-- Start #sidebar -->
+        <div id="sidebar">
+            <!-- Start .sidebar-inner -->
+            <div class="sidebar-inner">
+                <!-- Start #sideNav -->
+                <ul id="sideNav" class="nav nav-pills nav-stacked">
+                    <li class="top-search">
+                        <form>
+                            <input type="text" name="search" placeholder="Search ...">
+                            <button type="submit"><i class="ec-search s20"></i>
+                            </button>
+                        </form>
+                    </li>
+                    <li><a href="{% url 'index' %}">主页 <i class="im-screen"></i></a>
+                    </li>
+
+                    <li><a href="#"> 部门信息 <i class="im-table2"></i></a>
+                        <ul class="nav sub">
+                            <li><a href="{% url 'users:dept' %}"><i class="en-arrow-right7"></i> 添加部门信息</a>
+                            </li>
+                            <li><a href="{% url 'users:dept_list' %}"><i class="en-arrow-right7"></i> 部门列表</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="#"> 人员信息 <i class="st-lab"></i></a>
+                        <ul class="nav sub">
+                            <li><a href="{% url 'users:user_add' %}"><i class="fa-bell"></i> 添加人员信息</a>
+                            </li>
+                            <li><a href="{% url 'users:user_list' %}"><i class="br-window"></i> 人员列表</a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li><a href="#"><i class="ec-mail"></i> 资产信息</a>
+                        <ul class="nav sub">
+                            <li><a href="{% url 'assets:first_category' %}"><i class="ec-archive"></i> 添加资产一级分类名称</a>
+                            </li>
+                            <li><a href="{% url 'assets:second_category' %}"><i class="br-eye"></i> 添加资产二级分类名称</a>
+                            </li>
+                            <li><a href="{% url 'assets:assets_add' %}"><i class="ec-pencil2"></i> 添加资产详细信息</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="#"><i class="en-upload"></i> 资产申请信息</a>
+                         <ul class="nav sub">
+                            <li><a href="{% url 'operation:asset_apply' %}"><i class="ec-archive"></i> 申请办公资产</a>
+                            </li>
+                            <li><a href="{% url 'operation:apply_list' %}"><i class="br-eye"></i> 办公资产申请列表</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+                <!-- End #sideNav -->
+                <!-- Start .sidebar-panel -->
+
+                <!-- End .sidebar-panel -->
+            </div>
+            <!-- End .sidebar-inner -->
+        </div>
+
+
+{% block content %}
+
+{% endblock content %}
+
+        <!-- Javascripts -->
+        <!-- Load pace first -->
+        <script src="/static/assets/plugins/core/pace/pace.min.js"></script>
+        <!-- Important javascript libs(put in all pages) -->
+        <script src="/static/assets/js/jquery-1.8.3.min.js"></script>
+        <script>
+        window.jQuery || document.write('<script src="/static/assets/js/libs/jquery-2.1.1.min.js">\x3C/script>')
+        </script>
+        <script src="/static/assets/js/jquery-ui.js"></script>
+        <script>
+        window.jQuery || document.write('<script src="/static/assets/js/libs/jquery-ui-1.10.4.min.js">\x3C/script>')
+        </script>
+        <!--[if lt IE 9]>
+  <script type="text/javascript" src="/static/assets/js/libs/excanvas.min.js"></script>
+  <script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <script type="text/javascript" src="/static/assets/js/libs/respond.min.js"></script>
+<![endif]-->
+        <!-- Bootstrap plugins -->
+        <script src="/static/assets/js/bootstrap/bootstrap.js"></script>
+        <!-- Core plugins ( not remove ever) -->
+        <!-- Handle responsive view functions -->
+        <script src="/static/assets/js/jRespond.min.js"></script>
+        <!-- Custom scroll for sidebars,tables and etc. -->
+        <script src="/static/assets/plugins/core/slimscroll/jquery.slimscroll.min.js"></script>
+        <script src="/static/assets/plugins/core/slimscroll/jquery.slimscroll.horizontal.min.js"></script>
+        <!-- Resize text area in most pages -->
+        <script src="/static/assets/plugins/forms/autosize/jquery.autosize.js"></script>
+        <!-- Proivde quick search for many widgets -->
+        <script src="/static/assets/plugins/core/quicksearch/jquery.quicksearch.js"></script>
+        <!-- Bootbox confirm dialog for reset postion on panels -->
+        <script src="/static/assets/plugins/ui/bootbox/bootbox.js"></script>
+        <!-- Other plugins ( load only nessesary plugins for every page) -->
+        <script src="/static/assets/plugins/charts/flot/jquery.flot.js"></script>
+        <script src="/static/assets/plugins/charts/flot/jquery.flot.pie.js"></script>
+        <script src="/static/assets/plugins/charts/flot/jquery.flot.resize.js"></script>
+        <script src="/static/assets/plugins/charts/flot/jquery.flot.time.js"></script>
+        <script src="/static/assets/plugins/charts/flot/jquery.flot.growraf.js"></script>
+        <script src="/static/assets/plugins/charts/flot/jquery.flot.categories.js"></script>
+        <script src="/static/assets/plugins/charts/flot/jquery.flot.stack.js"></script>
+        <script src="/static/assets/plugins/charts/flot/jquery.flot.tooltip.min.js"></script>
+        <script src="/static/assets/plugins/charts/flot/date.js"></script>
+        <script src="/static/assets/plugins/charts/sparklines/jquery.sparkline.js"></script>
+        <script src="/static/assets/plugins/charts/pie-chart/jquery.easy-pie-chart.js"></script>
+        <script src="/static/assets/plugins/forms/icheck/jquery.icheck.js"></script>
+        <script src="/static/assets/plugins/forms/tags/jquery.tagsinput.min.js"></script>
+        <script src="/static/assets/plugins/forms/tinymce/tinymce.min.js"></script>
+        <script src="/static/assets/plugins/misc/highlight/highlight.pack.js"></script>
+        <script src="/static/assets/plugins/misc/countTo/jquery.countTo.js"></script>
+        <script src="/static/assets/plugins/ui/weather/skyicons.js"></script>
+        <script src="/static/assets/plugins/ui/notify/jquery.gritter.js"></script>
+        <script src="/static/assets/plugins/ui/calendar/fullcalendar.js"></script>
+        <script src="/static/assets/js/jquery.sprFlat.js"></script>
+        <script src="/static/assets/js/app.js"></script>
+
+        {% block endjs %}
+        <script src="/static/assets/js/pages/dashboard.js"></script>
+        {% endblock endjs %}
+
+    </body>
+</html>
